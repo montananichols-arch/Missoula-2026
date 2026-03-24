@@ -1,0 +1,1583 @@
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Missoula Spring 2026 — Family Trip</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --sky: #3a6b9f;
+      --deep-blue: #1e3d5c;
+      --mountain: #4a6741;
+      --forest: #1c4528;
+      --spring: #5aa96a;
+      --river: #4a90b8;
+      --cream: #fdf8f0;
+      --tan: #f5ede0;
+      --gold: #c8861a;
+      --charcoal: #2a2a2a;
+      --muted: #6b7280;
+      --border: #e5ddd0;
+      --card: #ffffff;
+      --snow: #eef4f8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', system-ui, sans-serif; background: var(--cream); color: var(--charcoal); min-height: 100vh; }
+
+    /* ─── HEADER ─── */
+    .site-header {
+      background: linear-gradient(180deg, #0d1f33 0%, #1e3d5c 30%, #3a6b9f 65%, #6b9fc8 85%, #a8c8e0 100%);
+      position: relative; overflow: hidden;
+    }
+    .header-content {
+      text-align: center; color: white; padding: 2.5rem 1rem 0;
+      position: relative; z-index: 2;
+    }
+    .header-eyebrow {
+      font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+      opacity: 0.75; margin-bottom: 0.5rem;
+    }
+    .header-title {
+      font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 5vw, 3rem);
+      font-weight: 900; text-shadow: 0 2px 12px rgba(0,0,0,0.4); margin-bottom: 0.4rem;
+    }
+    .header-dates {
+      font-size: 0.95rem; opacity: 0.85; letter-spacing: 0.05em; margin-bottom: 1.5rem;
+    }
+    .header-family {
+      display: flex; justify-content: center; flex-wrap: wrap; gap: 0.5rem;
+      margin-bottom: 1.75rem;
+    }
+    .family-pill {
+      background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 20px; padding: 0.3rem 0.8rem; font-size: 0.8rem; color: white;
+    }
+
+    /* ─── MOUNTAIN SVG ─── */
+    .mountain-wrap { display: block; margin-bottom: -4px; position: relative; z-index: 1; }
+
+    /* ─── NAV ─── */
+    .nav-container {
+      background: white; border-bottom: 2px solid var(--border);
+      position: sticky; top: 0; z-index: 200;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+    .nav-tabs {
+      display: flex; overflow-x: auto; scrollbar-width: none;
+      max-width: 1100px; margin: 0 auto; padding: 0 0.75rem;
+    }
+    .nav-tabs::-webkit-scrollbar { display: none; }
+    .nav-tab {
+      flex-shrink: 0; padding: 1rem 1.1rem; border: none; background: none;
+      cursor: pointer; font-size: 0.85rem; font-weight: 500; color: var(--muted);
+      border-bottom: 3px solid transparent; transition: all 0.2s;
+      display: flex; align-items: center; gap: 0.35rem; white-space: nowrap;
+      font-family: 'Inter', sans-serif;
+    }
+    .nav-tab:hover { color: var(--forest); }
+    .nav-tab.active { color: var(--forest); border-bottom-color: var(--forest); }
+
+    /* ─── CONTENT ─── */
+    .main { max-width: 1100px; margin: 0 auto; padding: 2rem 1rem 6rem; }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* ─── CARDS ─── */
+    .card {
+      background: var(--card); border-radius: 14px; padding: 1.5rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 20px rgba(0,0,0,0.04);
+      border: 1px solid var(--border); margin-bottom: 1.25rem;
+    }
+    .card-header {
+      display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem;
+      padding-bottom: 1rem; border-bottom: 1px solid var(--border);
+    }
+    .card-icon {
+      width: 42px; height: 42px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; flex-shrink: 0;
+    }
+    .icon-blue { background: #dbeeff; }
+    .icon-green { background: #d4edda; }
+    .icon-gold { background: #fef3cd; }
+    .icon-purple { background: #ede9f6; }
+    .icon-rose { background: #fde8ec; }
+    .card-title {
+      font-family: 'Playfair Display', serif; font-size: 1.2rem;
+      font-weight: 700; color: var(--charcoal);
+    }
+    .card-sub { font-size: 0.78rem; color: var(--muted); margin-top: 0.1rem; }
+    .badge {
+      display: inline-block; padding: 0.2rem 0.65rem; border-radius: 20px;
+      font-size: 0.72rem; font-weight: 600; margin-left: auto;
+    }
+    .badge-green { background: #d4edda; color: #155724; }
+    .badge-blue { background: #cfe2ff; color: #084298; }
+    .badge-gold { background: #fff3cd; color: #664d03; }
+
+    /* ─── FLIGHTS ─── */
+    .flight-route {
+      display: flex; align-items: center; gap: 0.75rem;
+      margin: 1.25rem 0; flex-wrap: wrap;
+    }
+    .flight-endpoint { text-align: center; flex: 1; min-width: 80px; }
+    .airport-code {
+      font-size: 2rem; font-weight: 700; color: var(--deep-blue);
+      font-family: 'Playfair Display', serif;
+    }
+    .airport-city { font-size: 0.75rem; color: var(--muted); margin-top: 0.15rem; }
+    .flight-time { font-size: 1.05rem; font-weight: 600; margin-top: 0.3rem; }
+    .flight-tz { font-size: 0.72rem; color: var(--muted); }
+    .flight-middle {
+      flex: 2; display: flex; flex-direction: column; align-items: center; min-width: 100px;
+    }
+    .arrow-wrap {
+      width: 100%; position: relative; display: flex;
+      align-items: center; justify-content: center;
+    }
+    .arrow-line {
+      width: 100%; height: 2px;
+      background: linear-gradient(to right, var(--river), var(--sky));
+    }
+    .plane-icon {
+      position: absolute; font-size: 1.2rem;
+      background: white; padding: 0 4px; color: var(--sky);
+    }
+    .flight-meta { font-size: 0.78rem; color: var(--muted); margin-top: 0.4rem; }
+    .info-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 0.75rem; margin-top: 1.25rem;
+    }
+    .info-item { background: var(--tan); border-radius: 8px; padding: 0.75rem; }
+    .info-label {
+      font-size: 0.67rem; text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--muted); margin-bottom: 0.2rem;
+    }
+    .info-value { font-size: 0.9rem; font-weight: 600; }
+    .conf { font-family: monospace; font-size: 0.9rem; }
+
+    /* ─── RENTAL CARS ─── */
+    .rental-row {
+      display: flex; gap: 1rem; align-items: flex-start;
+      padding: 1rem 0; border-bottom: 1px solid var(--border);
+    }
+    .rental-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .rental-icon-wrap { font-size: 1.75rem; flex-shrink: 0; width: 40px; text-align: center; }
+    .rental-details { flex: 1; }
+    .rental-leg { font-weight: 600; margin-bottom: 0.25rem; }
+    .rental-sub { font-size: 0.85rem; color: var(--muted); }
+    .leg-divider {
+      display: flex; align-items: center; gap: 0.5rem;
+      margin: 0.75rem 0; color: var(--muted); font-size: 0.8rem;
+    }
+    .leg-divider::before, .leg-divider::after {
+      content: ''; flex: 1; height: 1px; background: var(--border);
+    }
+
+    /* ─── ITINERARY ─── */
+    .day-block { margin-bottom: 1.5rem; }
+    .day-label {
+      display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.9rem;
+    }
+    .day-pill {
+      background: var(--forest); color: white; border-radius: 8px;
+      padding: 0.35rem 0.8rem; font-size: 0.78rem; font-weight: 700;
+      flex-shrink: 0;
+    }
+    .day-title-text {
+      font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700;
+    }
+    .day-special-tag {
+      margin-left: auto; background: #fff3cd; color: #664d03;
+      border-radius: 20px; padding: 0.2rem 0.65rem; font-size: 0.72rem;
+      font-weight: 600; flex-shrink: 0;
+    }
+    .timeline { padding-left: 1.75rem; position: relative; }
+    .timeline::before {
+      content: ''; position: absolute; left: 0.5rem; top: 4px;
+      bottom: 4px; width: 2px;
+      background: linear-gradient(to bottom, var(--spring), var(--river));
+      border-radius: 2px;
+    }
+    .tl-item { position: relative; padding-bottom: 1rem; }
+    .tl-item:last-child { padding-bottom: 0; }
+    .tl-dot {
+      position: absolute; left: -1.45rem; top: 0.35rem;
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--forest); border: 2px solid white;
+      box-shadow: 0 0 0 2px var(--forest);
+    }
+    .tl-time { font-size: 0.72rem; color: var(--muted); font-weight: 500; }
+    .tl-event { font-weight: 600; font-size: 0.95rem; }
+    .tl-note { font-size: 0.82rem; color: var(--muted); margin-top: 0.1rem; }
+
+    /* ─── PACKING ─── */
+    .person-tabs { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+    .ptab {
+      padding: 0.55rem 1.2rem; border-radius: 25px;
+      border: 2px solid var(--border); background: white;
+      cursor: pointer; font-weight: 500; font-size: 0.9rem;
+      transition: all 0.2s; font-family: 'Inter', sans-serif;
+    }
+    .ptab.active { background: var(--forest); color: white; border-color: var(--forest); }
+    .plist { display: none; }
+    .plist.active { display: block; }
+    .progress-wrap { margin-bottom: 1.25rem; }
+    .progress-text { font-size: 0.78rem; color: var(--muted); margin-bottom: 0.4rem; }
+    .progress-bar-bg { background: var(--border); border-radius: 10px; height: 7px; overflow: hidden; }
+    .progress-bar-fill {
+      height: 100%; border-radius: 10px;
+      background: linear-gradient(to right, var(--forest), var(--spring));
+      transition: width 0.35s;
+    }
+    .pcat { margin-bottom: 1.25rem; }
+    .pcat-title {
+      font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--muted); margin-bottom: 0.6rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .pcat-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+    .pitem {
+      display: flex; align-items: center; gap: 0.75rem;
+      padding: 0.5rem 0; border-bottom: 1px solid #f0ece6;
+    }
+    .pitem:last-of-type { border-bottom: none; }
+    .pitem input[type="checkbox"] { width: 18px; height: 18px; cursor: pointer; accent-color: var(--forest); }
+    .pitem-label { flex: 1; font-size: 0.9rem; }
+    .pitem-label.done { text-decoration: line-through; color: var(--muted); }
+    .del-btn {
+      display: none; background: none; border: none; color: #e57373;
+      cursor: pointer; font-size: 1rem; padding: 0.2rem 0.4rem;
+      border-radius: 4px; transition: background 0.15s;
+    }
+    .del-btn:hover { background: #fde8ec; }
+    .admin-mode .del-btn { display: block; }
+    .add-item-btn {
+      display: none; background: none; border: 2px dashed var(--border);
+      border-radius: 8px; width: 100%; padding: 0.55rem;
+      cursor: pointer; color: var(--muted); font-size: 0.82rem;
+      margin-top: 0.4rem; transition: all 0.2s; font-family: 'Inter', sans-serif;
+    }
+    .add-item-btn:hover { border-color: var(--forest); color: var(--forest); }
+    .admin-mode .add-item-btn { display: block; }
+
+    /* ─── WEATHER ─── */
+    .weather-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(155px, 1fr)); gap: 1rem;
+    }
+    .weather-card {
+      background: linear-gradient(145deg, #dff0fb, #e8f5e9);
+      border: 1px solid var(--border); border-radius: 12px;
+      padding: 1.25rem; text-align: center;
+    }
+    .weather-card.travel-day { border-top: 3px solid var(--gold); }
+    .weather-card.easter { border-top: 3px solid #9b59b6; }
+    .wdate { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+    .wday { font-weight: 700; font-size: 1rem; margin: 0.2rem 0 0.75rem; }
+    .wicon { font-size: 2.75rem; margin-bottom: 0.5rem; }
+    .wtemp { font-size: 1.6rem; font-weight: 700; color: var(--deep-blue); }
+    .wlow { font-size: 0.85rem; color: var(--muted); }
+    .wdesc { font-size: 0.8rem; margin-top: 0.4rem; color: var(--charcoal); }
+    .wnote { font-size: 0.72rem; color: var(--muted); margin-top: 0.4rem; font-style: italic; }
+    .weather-disclaimer {
+      background: #fff3cd; border-radius: 8px; padding: 0.75rem 1rem;
+      font-size: 0.82rem; color: #664d03; margin-top: 1rem;
+      border: 1px solid #ffc107;
+    }
+
+    /* ─── SHARE ─── */
+    .share-hero { text-align: center; padding: 2rem 0 1.5rem; }
+    .share-hero h2 {
+      font-family: 'Playfair Display', serif; font-size: 1.75rem; margin-bottom: 0.5rem;
+    }
+    .share-hero p { color: var(--muted); max-width: 500px; margin: 0 auto 1.5rem; }
+    .share-btns { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+    .sbtn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.8rem 1.5rem; border-radius: 10px; border: none;
+      cursor: pointer; font-weight: 600; font-size: 0.9rem;
+      transition: all 0.2s; font-family: 'Inter', sans-serif;
+    }
+    .sbtn-green { background: var(--forest); color: white; }
+    .sbtn-green:hover { background: #133520; transform: translateY(-1px); }
+    .sbtn-blue { background: var(--deep-blue); color: white; }
+    .sbtn-blue:hover { background: #142b42; transform: translateY(-1px); }
+    .family-who { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 0.75rem; margin: 1.5rem 0; }
+    .who-card { text-align: center; padding: 1rem 0.5rem; }
+    .who-avatar {
+      width: 56px; height: 56px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem; margin: 0 auto 0.5rem;
+    }
+    .who-name { font-weight: 600; font-size: 0.88rem; }
+    .who-role { font-size: 0.72rem; color: var(--muted); }
+    .copy-toast {
+      position: fixed; bottom: 5rem; left: 50%; transform: translateX(-50%);
+      background: #333; color: white; padding: 0.6rem 1.25rem; border-radius: 8px;
+      font-size: 0.85rem; opacity: 0; transition: opacity 0.3s; pointer-events: none;
+      z-index: 9999;
+    }
+    .copy-toast.show { opacity: 1; }
+
+    /* ─── ADMIN ─── */
+    .admin-bar {
+      position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 500;
+    }
+    .admin-toggle {
+      background: var(--charcoal); color: white; border: none;
+      border-radius: 50px; padding: 0.7rem 1.2rem;
+      cursor: pointer; font-size: 0.82rem; font-weight: 600;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      display: flex; align-items: center; gap: 0.5rem; transition: all 0.2s;
+      font-family: 'Inter', sans-serif;
+    }
+    .admin-toggle.on { background: var(--forest); }
+    .admin-toggle:hover { transform: translateY(-1px); }
+
+    /* editable fields in admin mode */
+    .admin-mode [data-edit] {
+      border-bottom: 2px dashed var(--gold); border-radius: 2px;
+      padding: 1px 3px; outline: none; display: inline-block; min-width: 20px;
+    }
+    .admin-mode [data-edit]:focus { background: rgba(200,134,26,0.08); }
+    .admin-hint {
+      display: none; font-size: 0.72rem; color: var(--gold);
+      font-style: italic; margin-bottom: 0.75rem;
+    }
+    .admin-mode .admin-hint { display: block; }
+
+    /* ─── MODAL ─── */
+    .modal-bg {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.55); z-index: 1000;
+      align-items: center; justify-content: center;
+    }
+    .modal-bg.open { display: flex; }
+    .modal-box {
+      background: white; border-radius: 16px; padding: 2rem;
+      max-width: 360px; width: 90%; box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+    .modal-box h3 {
+      font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: 0.5rem;
+    }
+    .modal-box p { font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem; }
+    .modal-box input {
+      width: 100%; padding: 0.7rem; border: 2px solid var(--border);
+      border-radius: 8px; font-size: 1rem; margin-bottom: 0.75rem;
+      outline: none; font-family: 'Inter', sans-serif;
+    }
+    .modal-box input:focus { border-color: var(--forest); }
+    .modal-err { color: #d32f2f; font-size: 0.82rem; margin-bottom: 0.5rem; display: none; }
+    .modal-btns { display: flex; gap: 0.75rem; }
+    .mbtn {
+      padding: 0.65rem 1.1rem; border-radius: 8px; border: none;
+      cursor: pointer; font-weight: 600; font-size: 0.88rem;
+      font-family: 'Inter', sans-serif; transition: all 0.2s;
+    }
+    .mbtn-primary { background: var(--forest); color: white; flex: 1; }
+    .mbtn-primary:hover { background: #133520; }
+    .mbtn-secondary { background: var(--border); color: var(--charcoal); }
+
+    /* ─── SECTION HEADER ─── */
+    .section-header { margin-bottom: 1.5rem; }
+    .section-title {
+      font-family: 'Playfair Display', serif; font-size: 1.65rem; font-weight: 700;
+    }
+    .section-desc { color: var(--muted); font-size: 0.88rem; margin-top: 0.25rem; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 600px) {
+      .airport-code { font-size: 1.5rem; }
+      .weather-grid { grid-template-columns: repeat(2, 1fr); }
+      .main { padding: 1.5rem 0.75rem 6rem; }
+    }
+
+    /* ─── ADD ITEM INPUT ─── */
+    .add-input-wrap { display: flex; gap: 0.5rem; margin-top: 0.5rem; }
+    .add-input {
+      flex: 1; padding: 0.5rem 0.75rem; border: 1px solid var(--border);
+      border-radius: 6px; font-size: 0.88rem; outline: none;
+      font-family: 'Inter', sans-serif;
+    }
+    .add-input:focus { border-color: var(--forest); }
+    .add-submit {
+      padding: 0.5rem 0.75rem; background: var(--forest); color: white;
+      border: none; border-radius: 6px; cursor: pointer; font-size: 0.88rem;
+      font-family: 'Inter', sans-serif;
+    }
+
+    hr { border: none; border-top: 1px solid var(--border); margin: 1.25rem 0; }
+    .text-muted { color: var(--muted); font-size: 0.88rem; }
+    .mt1 { margin-top: 1rem; }
+  </style>
+</head>
+
+<body>
+
+<!-- ═══════════════════════════════════════
+     HEADER
+════════════════════════════════════════ -->
+<header class="site-header">
+  <div class="header-content">
+    <div class="header-eyebrow">April 4 – 9, 2026 · Montana</div>
+    <h1 class="header-title">Missoula Spring 2026</h1>
+    <div class="header-dates">Josh · Finley · Gray &nbsp;→&nbsp; Home Sweet Montana</div>
+    <div class="header-family">
+      <span class="family-pill">✈️ ATL → MSO</span>
+      <span class="family-pill">🐣 Easter Sunday</span>
+      <span class="family-pill">🏔️ Big Sky Country</span>
+      <span class="family-pill">🚗 Avis × 2</span>
+    </div>
+  </div>
+
+  <!-- Mountain silhouette SVG -->
+  <div class="mountain-wrap">
+    <svg viewBox="0 0 1440 220" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:auto;">
+      <!-- Distant snow-capped peaks -->
+      <path d="M0,155 L60,100 L100,120 L145,80 L180,105 L230,65 L265,90 L310,55 L355,85 L400,45 L445,80 L490,35 L535,75 L575,50 L620,80 L660,40 L705,70 L750,30 L795,65 L840,38 L885,70 L925,42 L970,75 L1010,50 L1055,80 L1095,45 L1140,78 L1180,48 L1230,80 L1270,55 L1320,85 L1360,60 L1410,90 L1440,70 L1440,220 L0,220Z" fill="#b8cdd8" opacity="0.7"></path>
+      <!-- Snow caps -->
+      <polygon points="400,45 418,72 382,72" fill="white" opacity="0.9"></polygon>
+      <polygon points="490,35 510,64 470,64" fill="white" opacity="0.9"></polygon>
+      <polygon points="750,30 770,60 730,60" fill="white" opacity="0.9"></polygon>
+      <polygon points="840,38 858,66 822,66" fill="white" opacity="0.9"></polygon>
+      <polygon points="1095,45 1113,73 1077,73" fill="white" opacity="0.9"></polygon>
+      <polygon points="1270,55 1288,83 1252,83" fill="white" opacity="0.9"></polygon>
+      <!-- Mount Sentinel / Jumbo mid range -->
+      <path d="M0,170 L70,130 L130,148 L200,118 L265,140 L330,115 L390,138 L450,120 L510,145 L565,125 L625,142 L680,118 L740,138 L795,115 L855,138 L910,120 L965,142 L1020,118 L1080,138 L1130,115 L1190,138 L1250,118 L1310,140 L1365,120 L1440,140 L1440,220 L0,220Z" fill="#3d6b3a" opacity="0.85"></path>
+      <!-- M on Mount Sentinel (right side) -->
+      <text x="1060" y="130" font-size="22" fill="white" opacity="0.7" font-weight="bold" font-family="serif">M</text>
+      <!-- Near treeline / forest floor -->
+      <path d="M0,188 Q30,172 60,180 Q90,168 120,176 Q150,164 180,172 Q210,160 240,168 Q270,156 300,165 Q330,154 360,162 Q390,151 420,160 Q450,150 480,158 Q510,148 540,157 Q570,147 600,155 Q630,146 660,154 Q690,145 720,153 Q750,144 780,152 Q810,143 840,152 Q870,142 900,151 Q930,142 960,150 Q990,141 1020,150 Q1050,141 1080,149 Q1110,140 1140,149 Q1170,140 1200,148 Q1230,140 1260,148 Q1290,140 1320,148 Q1350,140 1380,147 L1440,148 L1440,220 L0,220Z" fill="#1a3d20"></path>
+      <!-- Clark Fork River shimmer -->
+      <path d="M0,210 Q180,204 360,208 Q540,212 720,206 Q900,200 1080,205 Q1260,210 1440,207 L1440,220 L0,220Z" fill="#4a90b8" opacity="0.45"></path>
+    </svg>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════════
+     NAVIGATION
+════════════════════════════════════════ -->
+<nav class="nav-container">
+  <div class="nav-tabs">
+    <button class="nav-tab" data-tab="flights">✈️ Flights</button>
+    <button class="nav-tab" data-tab="cars">🚗 Rental Cars</button>
+    <button class="nav-tab" data-tab="itinerary">📅 Itinerary</button>
+    <button class="nav-tab" data-tab="packing">🎒 Packing</button>
+    <button class="nav-tab" data-tab="weather">🌤️ Weather</button>
+    <button class="nav-tab active" data-tab="share">📤 Share</button>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════
+     MAIN CONTENT
+════════════════════════════════════════ -->
+<main class="main">
+
+  <!-- ───── FLIGHTS TAB ───── -->
+  <div class="tab-panel" id="tab-flights">
+    <div class="section-header">
+      <h2 class="section-title">Flight Information</h2>
+      <p class="section-desc">Delta Air Lines · Round Trip · ATL ↔ GEG</p>
+    </div>
+    <p class="admin-hint">✏️ Admin mode active — click any underlined text to edit</p>
+
+    <!-- Outbound -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon icon-blue">✈️</div>
+        <div>
+          <div class="card-title">Outbound Flight</div>
+          <div class="card-sub">Atlanta → Spokane</div>
+        </div>
+        <span class="badge badge-green">✓ Confirmed</span>
+      </div>
+
+      <div class="flight-route">
+        <div class="flight-endpoint">
+          <div class="airport-code">ATL</div>
+          <div class="airport-city">Atlanta</div>
+          <div class="flight-time"><span data-edit="f-out-dep-time" contenteditable="false">9:48 AM</span></div>
+          <div class="flight-tz"><span data-edit="f-out-dep-tz" contenteditable="false">EST</span></div>
+        </div>
+        <div class="flight-middle">
+          <div class="arrow-wrap">
+            <div class="arrow-line"></div>
+            <div class="plane-icon">✈</div>
+          </div>
+          <div class="flight-meta">
+            <span data-edit="f-out-number" contenteditable="false">Delta DL 0787</span>
+            &nbsp;·&nbsp;
+            <span data-edit="f-out-duration" contenteditable="false">~5h 49m</span>
+          </div>
+        </div>
+        <div class="flight-endpoint">
+          <div class="airport-code">GEG</div>
+          <div class="airport-city">Spokane</div>
+          <div class="flight-time"><span data-edit="f-out-arr-time" contenteditable="false">11:37 AM</span></div>
+          <div class="flight-tz"><span data-edit="f-out-arr-tz" contenteditable="false">PST</span></div>
+        </div>
+      </div>
+
+      <div class="info-grid">
+        <div class="info-item">
+          <div class="info-label">Date</div>
+          <div class="info-value"><span data-edit="f-out-date" contenteditable="false">Saturday, April 4, 2026</span></div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">Airline</div>
+          <div class="info-value"><span data-edit="f-out-airline" contenteditable="false">Delta Air Lines</span></div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">Flight #</div>
+          <div class="info-value conf"><span data-edit="f-out-flightno" contenteditable="false">DL 0787</span></div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">Terminal / Gate</div>
+          <div class="info-value"><span data-edit="f-out-gate" contenteditable="false">TBD</span></div>
+        </div>
+      </div>
+
+      <div class="info-item mt1" style="background:var(--tan);border-radius:8px;padding:0.75rem;">
+        <div class="info-label">Notes</div>
+        <div class="info-value" style="font-weight:400;font-size:0.88rem;">
+          <span data-edit="f-out-notes" contenteditable="false">After landing, head to Avis rental counter — car pickup at 12:30 PM PST. ~3.5 hr drive to Missoula on I-90 E.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Return -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon icon-blue">🏠</div>
+        <div>
+          <div class="card-title">Return Flight</div>
+          <div class="card-sub">Spokane → Atlanta</div>
+        </div>
+        <span class="badge badge-green">✓ Confirmed</span>
+      </div>
+
+      <div class="flight-route">
+        <div class="flight-endpoint">
+          <div class="airport-code">GEG</div>
+          <div class="airport-city">Spokane</div>
+          <div class="flight-time"><span data-edit="f-ret-dep-time" contenteditable="false">12:35 PM</span></div>
+          <div class="flight-tz"><span data-edit="f-ret-dep-tz" contenteditable="false">PST</span></div>
+        </div>
+        <div class="flight-middle">
+          <div class="arrow-wrap">
+            <div class="arrow-line"></div>
+            <div class="plane-icon">✈</div>
+          </div>
+          <div class="flight-meta">
+            <span data-edit="f-ret-number" contenteditable="false">Delta</span>
+            &nbsp;·&nbsp;
+            <span data-edit="f-ret-duration" contenteditable="false">~5h 24m</span>
+          </div>
+        </div>
+        <div class="flight-endpoint">
+          <div class="airport-code">ATL</div>
+          <div class="airport-city">Atlanta</div>
+          <div class="flight-time"><span data-edit="f-ret-arr-time" contenteditable="false">7:59 PM</span></div>
+          <div class="flight-tz"><span data-edit="f-ret-arr-tz" contenteditable="false">EST</span></div>
+        </div>
+      </div>
+
+      <div class="info-grid">
+        <div class="info-item">
+          <div class="info-label">Date</div>
+          <div class="info-value"><span data-edit="f-ret-date" contenteditable="false">Thursday, April 9, 2026</span></div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">Airline</div>
+          <div class="info-value"><span data-edit="f-ret-airline" contenteditable="false">Delta Air Lines</span></div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">Flight #</div>
+          <div class="info-value conf"><span data-edit="f-ret-flightno" contenteditable="false">TBD</span></div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">Terminal / Gate</div>
+          <div class="info-value"><span data-edit="f-ret-gate" contenteditable="false">TBD</span></div>
+        </div>
+      </div>
+
+      <div class="info-item mt1" style="background:var(--tan);border-radius:8px;padding:0.75rem;">
+        <div class="info-label">Notes</div>
+        <div class="info-value" style="font-weight:400;font-size:0.88rem;">
+          <span data-edit="f-ret-notes" contenteditable="false">Leave Missoula by ~7:30 AM MST to reach Spokane airport in time. Drop off rental car (Conf: 09939742US1) before checking in.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ───── RENTAL CARS TAB ───── -->
+  <div class="tab-panel" id="tab-cars">
+    <div class="section-header">
+      <h2 class="section-title">Rental Cars</h2>
+      <p class="section-desc">Avis · Two one-way rentals · Spokane ↔ Missoula</p>
+    </div>
+    <p class="admin-hint">✏️ Admin mode active — click any underlined text to edit</p>
+
+    <!-- Car 1 -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon icon-green">🚗</div>
+        <div>
+          <div class="card-title">Car #1 — Arrival</div>
+          <div class="card-sub">Spokane Airport → Missoula Airport</div>
+        </div>
+        <span class="badge badge-green">✓ Confirmed</span>
+      </div>
+      <p class="admin-hint">✏️ Edit any field below</p>
+
+      <div class="info-grid">
+        <div class="info-item">
+          <div class="info-label">Company</div>
+          <div class="info-value"><span data-edit="c1-co" contenteditable="false">Avis</span></div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">Confirmation #</div>
+          <div class="info-value conf"><span data-edit="c1-conf" contenteditable="false">09935360US1</span></div>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="rental-row">
+        <div class="rental-icon-wrap">📍</div>
+        <div class="rental-details">
+          <div class="rental-leg">Pick Up</div>
+          <div class="rental-sub">
+            <strong><span data-edit="c1-pu-loc" contenteditable="false">Spokane International Airport (GEG)</span></strong><br>
+            <span data-edit="c1-pu-date" contenteditable="false">Saturday, April 4, 2026</span> ·
+            <span data-edit="c1-pu-time" contenteditable="false">12:30 PM PST</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="leg-divider">~3.5 hr drive east on I-90 · 200 miles</div>
+
+      <div class="rental-row">
+        <div class="rental-icon-wrap">🏁</div>
+        <div class="rental-details">
+          <div class="rental-leg">Drop Off</div>
+          <div class="rental-sub">
+            <strong><span data-edit="c1-do-loc" contenteditable="false">Missoula Montana Airport (MSO)</span></strong><br>
+            <span data-edit="c1-do-date" contenteditable="false">Saturday, April 4, 2026</span> ·
+            <span data-edit="c1-do-time" contenteditable="false">5:00 PM MST</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-item mt1" style="background:var(--tan);border-radius:8px;padding:0.75rem;">
+        <div class="info-label">Notes</div>
+        <div class="info-value" style="font-weight:400;font-size:0.88rem;">
+          <span data-edit="c1-notes" contenteditable="false">One-way rental. Pick up right after landing — family might already be at the airport waiting! Return to MSO to close out the reservation.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Car 2 -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon icon-green">🚗</div>
+        <div>
+          <div class="card-title">Car #2 — Departure</div>
+          <div class="card-sub">Missoula Airport → Spokane Airport</div>
+        </div>
+        <span class="badge badge-green">✓ Confirmed</span>
+      </div>
+      <p class="admin-hint">✏️ Edit any field below</p>
+
+      <div class="info-grid">
+        <div class="info-item">
+          <div class="info-label">Company</div>
+          <div class="info-value"><span data-edit="c2-co" contenteditable="false">Avis</span></div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">Confirmation #</div>
+          <div class="info-value conf"><span data-edit="c2-conf" contenteditable="false">09939742US1</span></div>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="rental-row">
+        <div class="rental-icon-wrap">📍</div>
+        <div class="rental-details">
+          <div class="rental-leg">Pick Up</div>
+          <div class="rental-sub">
+            <strong><span data-edit="c2-pu-loc" contenteditable="false">Missoula Montana Airport (MSO)</span></strong><br>
+            <span data-edit="c2-pu-date" contenteditable="false">Wednesday, April 8, 2026</span> ·
+            <span data-edit="c2-pu-time" contenteditable="false">5:00 PM MST</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="leg-divider">~3.5 hr drive west on I-90 · 200 miles · depart early morning</div>
+
+      <div class="rental-row">
+        <div class="rental-icon-wrap">🏁</div>
+        <div class="rental-details">
+          <div class="rental-leg">Drop Off</div>
+          <div class="rental-sub">
+            <strong><span data-edit="c2-do-loc" contenteditable="false">Spokane International Airport (GEG)</span></strong><br>
+            <span data-edit="c2-do-date" contenteditable="false">Thursday, April 9, 2026</span> ·
+            <span data-edit="c2-do-time" contenteditable="false">Before 12:35 PM PST (flight departs at 12:35)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-item mt1" style="background:#fff3cd;border-radius:8px;padding:0.75rem;border:1px solid #ffc107;">
+        <div class="info-label" style="color:#664d03;">⚠️ Departure Day Reminder</div>
+        <div class="info-value" style="font-weight:400;font-size:0.88rem;color:#664d03;">
+          <span data-edit="c2-notes" contenteditable="false">Leave Missoula by 7:30 AM MST on April 9. The drive is ~3.5 hours + time to return the car and clear security before your 12:35 PM PST flight.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ───── ITINERARY TAB ───── -->
+  <div class="tab-panel" id="tab-itinerary">
+    <div class="section-header">
+      <h2 class="section-title">Trip Itinerary</h2>
+      <p class="section-desc">April 4–9, 2026 · Coming home to Missoula</p>
+    </div>
+    <p class="admin-hint">✏️ Admin mode active — click any underlined text to edit</p>
+
+    <!-- Day 1: April 4 -->
+    <div class="card day-block">
+      <div class="day-label">
+        <span class="day-pill">SAT · APR 4</span>
+        <span class="day-title-text"><span data-edit="d1-title" contenteditable="false">Arrival Day 🏔️</span></span>
+        <span class="day-special-tag">Travel Day</span>
+      </div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-time">Morning · EST</div>
+          <div class="tl-event"><span data-edit="d1-e1" contenteditable="false">Head to Hartsfield-Jackson (ATL)</span></div>
+          <div class="tl-note"><span data-edit="d1-n1" contenteditable="false">Get to the airport early — DL 0787 boards at 9:48 AM EST</span></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-time">9:48 AM EST</div>
+          <div class="tl-event"><span data-edit="d1-e2" contenteditable="false">✈️ Depart Atlanta on DL 0787</span></div>
+          <div class="tl-note"><span data-edit="d1-n2" contenteditable="false">Non-stop to Spokane — settle in and enjoy the ride over the Rockies</span></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-time">11:37 AM PST</div>
+          <div class="tl-event"><span data-edit="d1-e3" contenteditable="false">🛬 Land in Spokane (GEG)</span></div>
+          <div class="tl-note"><span data-edit="d1-n3" contenteditable="false">Welcome to the Pacific Northwest! Grab bags and head to Avis.</span></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-time">12:30 PM PST</div>
+          <div class="tl-event"><span data-edit="d1-e4" contenteditable="false">🚗 Pick up Avis rental car (Conf: 09935360US1)</span></div>
+          <div class="tl-note"><span data-edit="d1-n4" contenteditable="false">Hit I-90 East — Missoula is ~200 miles, about 3.5 hours through the Idaho panhandle and into Montana</span></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-time">~4:00–5:00 PM MST</div>
+          <div class="tl-event"><span data-edit="d1-e5" contenteditable="false">🏠 Welcome to Missoula!</span></div>
+          <div class="tl-note"><span data-edit="d1-n5" contenteditable="false">Drop off rental car at MSO airport, then head to Mom &amp; Dad's — reunite with the whole crew</span></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-time">Evening</div>
+          <div class="tl-event"><span data-edit="d1-e6" contenteditable="false">🍽️ First dinner back in Missoula</span></div>
+          <div class="tl-note"><span data-edit="d1-n6" contenteditable="false">Settle in, catch up with the family, let the kids get reacquainted</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Day 2: April 5 — Easter Sunday -->
+    <div class="card day-block">
+      <div class="day-label">
+        <span class="day-pill" style="background:#7b3fb5;">SUN · APR 5</span>
+        <span class="day-title-text"><span data-edit="d2-title" contenteditable="false">Easter Sunday 🐣</span></span>
+        <span class="day-special-tag" style="background:#f3e5f5;color:#6a1b9a;">Happy Easter!</span>
+      </div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot" style="background:#7b3fb5;box-shadow:0 0 0 2px #7b3fb5;"></div>
+          <div class="tl-time">Morning</div>
+          <div class="tl-event"><span data-edit="d2-e1" contenteditable="false">🐣 Easter Morning — hide the eggs!</span></div>
+          <div class="tl-note"><span data-edit="d2-n1" contenteditable="false">Sloane, Roman, Orson, Finley, and Gray get the Easter egg hunt going</span></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot" style="background:#7b3fb5;box-shadow:0 0 0 2px #7b3fb5;"></div>
+          <div class="tl-time">Mid-Morning</div>
+          <div class="tl-event"><span data-edit="d2-e2" contenteditable="false">🍳 Easter Brunch at Mom &amp; Dad's</span></div>
+          <div class="tl-note"><span data-edit="d2-n2" contenteditable="false">The whole family together — the way it should be</span></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot" style="background:#7b3fb5;box-shadow:0 0 0 2px #7b3fb5;"></div>
+          <div class="tl-time">Afternoon</div>
+          <div class="tl-event"><span data-edit="d2-e3" contenteditable="false">🥚 Easter Egg Hunt</span></div>
+          <div class="tl-note"><span data-edit="d2-n3" contenteditable="false">Five kids, one yard — may the best hunter win</span></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot" style="background:#7b3fb5;box-shadow:0 0 0 2px #7b3fb5;"></div>
+          <div class="tl-time">All Day</div>
+          <div class="tl-event"><span data-edit="d2-e4" contenteditable="false">👨‍👩‍👧‍👦 Family time</span></div>
+          <div class="tl-note"><span data-edit="d2-n4" contenteditable="false">Hang out, tell stories, let the cousins run around — this is what the trip is all about</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Day 3: April 6 -->
+    <div class="card day-block">
+      <div class="day-label">
+        <span class="day-pill">MON · APR 6</span>
+        <span class="day-title-text"><span data-edit="d3-title" contenteditable="false">Family Day in Missoula</span></span>
+      </div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-time">Morning</div>
+          <div class="tl-event"><span data-edit="d3-e1" contenteditable="false">☕ Slow morning</span></div>
+          <div class="tl-note"><span data-edit="d3-n1" contenteditable="false">Coffee, breakfast, catching up</span></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-time">Daytime</div>
+          <div class="tl-event"><span data-edit="d3-e2" contenteditable="false">🏔️ Whatever feels right</span></div>
+          <div class="tl-note"><span data-edit="d3-n2" contenteditable="false">Maybe a walk along the Clark Fork, a drive up the Rattlesnake, or just hanging at the house</span></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-time">Evening</div>
+          <div class="tl-event"><span data-edit="d3-e3" contenteditable="false">🍕 Dinner with the family</span></div>
+          <div class="tl-note"><span data-edit="d3-n3" contenteditable="false">TBD — go with the flow</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Day 4: April 7 -->
+    <div class="card day-block">
+      <div class="day-label">
+        <span class="day-pill">TUE · APR 7</span>
+        <span class="day-title-text"><span data-edit="d4-title" contenteditable="false">Another Great Montana Day</span></span>
+      </div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-time">All Day</div>
+          <div class="tl-event"><span data-edit="d4-e1" contenteditable="false">🏡 More family time</span></div>
+          <div class="tl-note"><span data-edit="d4-n1" contenteditable="false">Spend time with Mom, Dad, sis and the kids — maybe visit a favorite old spot around town</span></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-time">Evening</div>
+          <div class="tl-event"><span data-edit="d4-e2" contenteditable="false">🌅 Evening plans</span></div>
+          <div class="tl-note"><span data-edit="d4-n2" contenteditable="false">TBD</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Day 5: April 8 -->
+    <div class="card day-block">
+      <div class="day-label">
+        <span class="day-pill">WED · APR 8</span>
+        <span class="day-title-text"><span data-edit="d5-title" contenteditable="false">Last Full Day in Montana</span></span>
+        <span class="day-special-tag">Pick up Car #2</span>
+      </div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-time">Daytime</div>
+          <div class="tl-event"><span data-edit="d5-e1" contenteditable="false">🤗 Make the most of it</span></div>
+          <div class="tl-note"><span data-edit="d5-n1" contenteditable="false">Last full day — soak it in with the family</span></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-time">5:00 PM MST</div>
+          <div class="tl-event"><span data-edit="d5-e2" contenteditable="false">🚗 Pick up Avis rental car at MSO (Conf: 09939742US1)</span></div>
+          <div class="tl-note"><span data-edit="d5-n2" contenteditable="false">Head to the airport to grab the car for tomorrow's drive to Spokane</span></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-time">Evening</div>
+          <div class="tl-event"><span data-edit="d5-e3" contenteditable="false">🥂 Last dinner together</span></div>
+          <div class="tl-note"><span data-edit="d5-n3" contenteditable="false">Final night — pack tonight so tomorrow morning is smooth</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Day 6: April 9 — Departure -->
+    <div class="card day-block">
+      <div class="day-label">
+        <span class="day-pill">THU · APR 9</span>
+        <span class="day-title-text"><span data-edit="d6-title" contenteditable="false">Departure Day ✈️</span></span>
+        <span class="day-special-tag">Travel Day</span>
+      </div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-time">~7:30 AM MST</div>
+          <div class="tl-event"><span data-edit="d6-e1" contenteditable="false">🚗 Depart Missoula — drive to Spokane</span></div>
+          <div class="tl-note"><span data-edit="d6-n1" contenteditable="false">~3.5 hours on I-90 West. Leave by 7:30 AM to have plenty of time before the flight</span></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-time">~11:00 AM PST</div>
+          <div class="tl-event"><span data-edit="d6-e2" contenteditable="false">🏁 Arrive Spokane — drop off rental car at GEG</span></div>
+          <div class="tl-note"><span data-edit="d6-n2" contenteditable="false">Return Avis car (Conf: 09939742US1), then head inside to check in</span></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-time">12:35 PM PST</div>
+          <div class="tl-event"><span data-edit="d6-e3" contenteditable="false">✈️ Depart Spokane for Atlanta</span></div>
+          <div class="tl-note"><span data-edit="d6-n3" contenteditable="false">Fly home with great memories and probably a few pounds of huckleberry products</span></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-time">7:59 PM EST</div>
+          <div class="tl-event"><span data-edit="d6-e4" contenteditable="false">🏠 Home in Atlanta</span></div>
+          <div class="tl-note"><span data-edit="d6-n4" contenteditable="false">Back in Georgia — already looking forward to next time</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ───── PACKING TAB ───── -->
+  <div class="tab-panel" id="tab-packing">
+    <div class="section-header">
+      <h2 class="section-title">Packing Lists</h2>
+      <p class="section-desc">Check items off as you pack · April weather in Montana = layers!</p>
+    </div>
+    <p class="admin-hint">✏️ Admin mode — add or remove items from any list</p>
+
+    <div class="person-tabs">
+      <button class="ptab active" data-person="josh">🧔 Josh</button>
+      <button class="ptab" data-person="finley">🧒 Finley</button>
+      <button class="ptab" data-person="gray">🧒 Gray</button>
+    </div>
+
+    <!-- ─── JOSH ─── -->
+    <div class="plist active" id="plist-josh">
+      <div class="progress-wrap">
+        <div class="progress-text" id="progress-text-josh">0 of 25 packed (0%)</div>
+        <div class="progress-bar-bg"><div class="progress-bar-fill" id="progress-bar-josh" style="width:0%"></div></div>
+      </div>
+
+      <div class="card">
+        <div id="pcat-josh-docs" class="pcat">
+          <div class="pcat-title">📋 Travel Documents</div>
+          <div class="pcat-items">
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="josh"><label class="pitem-label">Driver's license / ID</label><button class="del-btn" title="Remove">✕</button></div>
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="josh"><label class="pitem-label">Boarding passes (or Delta app)</label><button class="del-btn" title="Remove">✕</button></div>
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="josh"><label class="pitem-label">Avis confirmation printouts</label><button class="del-btn" title="Remove">✕</button></div>
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="josh"><label class="pitem-label">Credit card / cash</label><button class="del-btn" title="Remove">✕</button></div>
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="josh"><label class="pitem-label">Health insurance card</label><button class="del-btn" title="Remove">✕</button></div>
+          </div>
+          <button class="add-item-btn" data-person="josh" data-cat="pcat-josh-docs">+ Add item</button>
+        </div>
+
+        <div id="pcat-josh-clothes" class="pcat">
+          <div class="pcat-title">👕 Clothing (5 days · layers for Montana spring)</div>
+          <div class="pcat-items">
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="josh"><label class="pitem-label">T-shirts (5–6)</label><button class="del-btn" title="Remove">✕</button></div>
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="josh"><label class="pitem-label">Jeans / pants (2–3)</label><button class="del-btn" title="Remove">✕</button></div>
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="josh"><label class="pitem-label">Fleece or mid-layer</label><button class="del-btn" title="Remove">✕</button></div>
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="josh"><label class="pitem-label">Light jacket / rain layer</label><button class="del-btn" title="Remove">✕</button></div>
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="josh"><label class="pitem-label">Nicer outfit for Easter brunch</label><button class="del-btn" title="Remove">✕</button></div>
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="josh"><label class="pitem-label">Underwear &amp; socks (7 pairs)</label><button class="del-btn" title="Remove">✕</button></div>
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="josh"><label class="pitem-label">Pajamas / lounge wear</label><button class="del-btn" title="Remove">✕</button></div>
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="josh"><label class="pitem-label">Comfortable shoes</label><button class="del-btn" title="Remove">✕</button></div>
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="josh"><label class="pitem-label">Casual sneakers / boots</label><button class="del-btn" title="Remove">✕</button></div>
+          </div>
+          <button class="add-item-btn" data-person="josh" data-cat="pcat-josh-clothes">+ Add item</button>
+        </div>
+
+        <div id="pcat-josh-toiletries" class="pcat">
+          <div class="pcat-title">🪥 Toiletries</div>
+          <div class="pcat-items">
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="josh"><label class="pitem-label">Toothbrush &amp; toothpaste</label><button class="del-btn" title="Remove">✕</button></div>
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="josh"><label class="pitem-label">Deodorant</label><button class="del-btn" title="Remove">✕</button></div>
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="josh"><label class="pitem-label">Shampoo / conditioner</label><button class="del-btn" title="Remove">✕</button></div>
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="josh"><label class="pitem-label">Razor / shave kit</label><button class="del-btn" title="Remove">✕</button></div>
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="josh"><label class="pitem-label">Lip balm (dry Montana air!)</label><button class="del-btn" title="Remove">✕</button></div>
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="josh"><label class="pitem-label">Sunscreen</label><button class="del-btn" title="Remove">✕</button></div>
+          </div>
+          <button class="add-item-btn" data-person="josh" data-cat="pcat-josh-toiletries">+ Add item</button>
+        </div>
+
+        <div id="pcat-josh-tech" class="pcat">
+          <div class="pcat-title">🔌 Tech &amp; Gear</div>
+          <div class="pcat-items">
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="josh"><label class="pitem-label">Phone + charger</label><button class="del-btn" title="Remove">✕</button></div>
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="josh"><label class="pitem-label">Earbuds / headphones</label><button class="del-btn" title="Remove">✕</button></div>
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="josh"><label class="pitem-label">Portable charger / power bank</label><button class="del-btn" title="Remove">✕</button></div>
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="josh"><label class="pitem-label">Camera</label><button class="del-btn" title="Remove">✕</button></div>
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="josh"><label class="pitem-label">Medications (prescriptions etc)</label><button class="del-btn" title="Remove">✕</button></div>
+          </div>
+          <button class="add-item-btn" data-person="josh" data-cat="pcat-josh-tech">+ Add item</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── FINLEY ─── -->
+    <div class="plist" id="plist-finley">
+      <div class="progress-wrap">
+        <div class="progress-text" id="progress-text-finley">0 of 19 packed (0%)</div>
+        <div class="progress-bar-bg"><div class="progress-bar-fill" id="progress-bar-finley" style="width:0%"></div></div>
+      </div>
+
+      <div class="card">
+        <div id="pcat-finley-clothes" class="pcat">
+          <div class="pcat-title">👕 Clothing (5 days · April Montana = layers!)</div>
+          <div class="pcat-items">
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="finley"><label class="pitem-label">T-shirts (5–6)</label><button class="del-btn" title="Remove">✕</button></div>
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="finley"><label class="pitem-label">Pants / jeans (2–3 pairs)</label><button class="del-btn" title="Remove">✕</button></div>
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="finley"><label class="pitem-label">Fleece / sweatshirt</label><button class="del-btn" title="Remove">✕</button></div>
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="finley"><label class="pitem-label">Jacket (it can be cold!)</label><button class="del-btn" title="Remove">✕</button></div>
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="finley"><label class="pitem-label">Easter outfit 🐣</label><button class="del-btn" title="Remove">✕</button></div>
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="finley"><label class="pitem-label">Pajamas</label><button class="del-btn" title="Remove">✕</button></div>
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="finley"><label class="pitem-label">Underwear &amp; socks (7 pairs)</label><button class="del-btn" title="Remove">✕</button></div>
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="finley"><label class="pitem-label">Sneakers / shoes</label><button class="del-btn" title="Remove">✕</button></div>
+          </div>
+          <button class="add-item-btn" data-person="finley" data-cat="pcat-finley-clothes">+ Add item</button>
+        </div>
+
+        <div id="pcat-finley-toiletries" class="pcat">
+          <div class="pcat-title">🪥 Toiletries</div>
+          <div class="pcat-items">
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="finley"><label class="pitem-label">Toothbrush &amp; toothpaste</label><button class="del-btn" title="Remove">✕</button></div>
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="finley"><label class="pitem-label">Shampoo / body wash</label><button class="del-btn" title="Remove">✕</button></div>
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="finley"><label class="pitem-label">Lip balm</label><button class="del-btn" title="Remove">✕</button></div>
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="finley"><label class="pitem-label">Sunscreen</label><button class="del-btn" title="Remove">✕</button></div>
+          </div>
+          <button class="add-item-btn" data-person="finley" data-cat="pcat-finley-toiletries">+ Add item</button>
+        </div>
+
+        <div id="pcat-finley-entertainment" class="pcat">
+          <div class="pcat-title">🎮 Travel Entertainment</div>
+          <div class="pcat-items">
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="finley"><label class="pitem-label">Tablet / iPad (charged!)</label><button class="del-btn" title="Remove">✕</button></div>
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="finley"><label class="pitem-label">Headphones / earbuds</label><button class="del-btn" title="Remove">✕</button></div>
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="finley"><label class="pitem-label">Downloads for the flight</label><button class="del-btn" title="Remove">✕</button></div>
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="finley"><label class="pitem-label">Snacks for travel</label><button class="del-btn" title="Remove">✕</button></div>
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="finley"><label class="pitem-label">Favorite stuffed animal / comfort item</label><button class="del-btn" title="Remove">✕</button></div>
+          </div>
+          <button class="add-item-btn" data-person="finley" data-cat="pcat-finley-entertainment">+ Add item</button>
+        </div>
+
+        <div id="pcat-finley-easter" class="pcat">
+          <div class="pcat-title">🐣 Easter Stuff</div>
+          <div class="pcat-items">
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="finley"><label class="pitem-label">Easter basket</label><button class="del-btn" title="Remove">✕</button></div>
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="finley"><label class="pitem-label">Easter outfit ready to go</label><button class="del-btn" title="Remove">✕</button></div>
+          </div>
+          <button class="add-item-btn" data-person="finley" data-cat="pcat-finley-easter">+ Add item</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── GRAY ─── -->
+    <div class="plist" id="plist-gray">
+      <div class="progress-wrap">
+        <div class="progress-text" id="progress-text-gray">0 of 19 packed (0%)</div>
+        <div class="progress-bar-bg"><div class="progress-bar-fill" id="progress-bar-gray" style="width:0%"></div></div>
+      </div>
+
+      <div class="card">
+        <div id="pcat-gray-clothes" class="pcat">
+          <div class="pcat-title">👕 Clothing (5 days · April Montana = layers!)</div>
+          <div class="pcat-items">
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="gray"><label class="pitem-label">T-shirts (5–6)</label><button class="del-btn" title="Remove">✕</button></div>
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="gray"><label class="pitem-label">Pants / jeans (2–3 pairs)</label><button class="del-btn" title="Remove">✕</button></div>
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="gray"><label class="pitem-label">Fleece / sweatshirt</label><button class="del-btn" title="Remove">✕</button></div>
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="gray"><label class="pitem-label">Jacket (it can be cold!)</label><button class="del-btn" title="Remove">✕</button></div>
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="gray"><label class="pitem-label">Easter outfit 🐣</label><button class="del-btn" title="Remove">✕</button></div>
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="gray"><label class="pitem-label">Pajamas</label><button class="del-btn" title="Remove">✕</button></div>
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="gray"><label class="pitem-label">Underwear &amp; socks (7 pairs)</label><button class="del-btn" title="Remove">✕</button></div>
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="gray"><label class="pitem-label">Sneakers / shoes</label><button class="del-btn" title="Remove">✕</button></div>
+          </div>
+          <button class="add-item-btn" data-person="gray" data-cat="pcat-gray-clothes">+ Add item</button>
+        </div>
+
+        <div id="pcat-gray-toiletries" class="pcat">
+          <div class="pcat-title">🪥 Toiletries</div>
+          <div class="pcat-items">
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="gray"><label class="pitem-label">Toothbrush &amp; toothpaste</label><button class="del-btn" title="Remove">✕</button></div>
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="gray"><label class="pitem-label">Shampoo / body wash</label><button class="del-btn" title="Remove">✕</button></div>
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="gray"><label class="pitem-label">Lip balm</label><button class="del-btn" title="Remove">✕</button></div>
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="gray"><label class="pitem-label">Sunscreen</label><button class="del-btn" title="Remove">✕</button></div>
+          </div>
+          <button class="add-item-btn" data-person="gray" data-cat="pcat-gray-toiletries">+ Add item</button>
+        </div>
+
+        <div id="pcat-gray-entertainment" class="pcat">
+          <div class="pcat-title">🎮 Travel Entertainment</div>
+          <div class="pcat-items">
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="gray"><label class="pitem-label">Tablet / device (charged!)</label><button class="del-btn" title="Remove">✕</button></div>
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="gray"><label class="pitem-label">Headphones / earbuds</label><button class="del-btn" title="Remove">✕</button></div>
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="gray"><label class="pitem-label">Downloads for the flight</label><button class="del-btn" title="Remove">✕</button></div>
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="gray"><label class="pitem-label">Snacks for travel</label><button class="del-btn" title="Remove">✕</button></div>
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="gray"><label class="pitem-label">Favorite stuffed animal / comfort item</label><button class="del-btn" title="Remove">✕</button></div>
+          </div>
+          <button class="add-item-btn" data-person="gray" data-cat="pcat-gray-entertainment">+ Add item</button>
+        </div>
+
+        <div id="pcat-gray-easter" class="pcat">
+          <div class="pcat-title">🐣 Easter Stuff</div>
+          <div class="pcat-items">
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="gray"><label class="pitem-label">Easter basket</label><button class="del-btn" title="Remove">✕</button></div>
+            <div class="pitem"><input type="checkbox" class="pitem-cb" data-person="gray"><label class="pitem-label">Easter outfit ready to go</label><button class="del-btn" title="Remove">✕</button></div>
+          </div>
+          <button class="add-item-btn" data-person="gray" data-cat="pcat-gray-easter">+ Add item</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ───── WEATHER TAB ───── -->
+  <div class="tab-panel" id="tab-weather">
+    <div class="section-header">
+      <h2 class="section-title">Weather Forecast</h2>
+      <p class="section-desc">Missoula, MT · Elevation ~3,200 ft · Estimated April conditions</p>
+    </div>
+
+    <div class="weather-grid">
+      <div class="weather-card travel-day">
+        <div class="wdate">Apr 4, 2026</div>
+        <div class="wday">Saturday</div>
+        <div class="wicon">⛅</div>
+        <div class="wtemp">55°F</div>
+        <div class="wlow">Low 36°F</div>
+        <div class="wdesc">Partly Cloudy</div>
+        <div class="wnote">✈️ Arrival Day — Great driving weather on I-90</div>
+      </div>
+      <div class="weather-card easter">
+        <div class="wdate">Apr 5, 2026</div>
+        <div class="wday">Sunday</div>
+        <div class="wicon">🌤️</div>
+        <div class="wtemp">58°F</div>
+        <div class="wlow">Low 38°F</div>
+        <div class="wdesc">Morning clouds, afternoon sun</div>
+        <div class="wnote">🐣 Easter Sunday — perfect for an egg hunt!</div>
+      </div>
+      <div class="weather-card">
+        <div class="wdate">Apr 6, 2026</div>
+        <div class="wday">Monday</div>
+        <div class="wicon">☀️</div>
+        <div class="wtemp">62°F</div>
+        <div class="wlow">Low 41°F</div>
+        <div class="wdesc">Mostly Sunny</div>
+        <div class="wnote">Beautiful Montana spring day</div>
+      </div>
+      <div class="weather-card">
+        <div class="wdate">Apr 7, 2026</div>
+        <div class="wday">Tuesday</div>
+        <div class="wicon">🌤️</div>
+        <div class="wtemp">59°F</div>
+        <div class="wlow">Low 39°F</div>
+        <div class="wdesc">Partly Cloudy</div>
+        <div class="wnote">Great for outdoor family time</div>
+      </div>
+      <div class="weather-card">
+        <div class="wdate">Apr 8, 2026</div>
+        <div class="wday">Wednesday</div>
+        <div class="wicon">🌦️</div>
+        <div class="wtemp">54°F</div>
+        <div class="wlow">Low 37°F</div>
+        <div class="wdesc">Chance of showers</div>
+        <div class="wnote">Indoor family time — board games?</div>
+      </div>
+      <div class="weather-card travel-day">
+        <div class="wdate">Apr 9, 2026</div>
+        <div class="wday">Thursday</div>
+        <div class="wicon">⛅</div>
+        <div class="wtemp">52°F</div>
+        <div class="wlow">Low 34°F</div>
+        <div class="wdesc">Partly Cloudy</div>
+        <div class="wnote">✈️ Departure Day — safe travels home</div>
+      </div>
+    </div>
+
+    <div class="weather-disclaimer">
+      <strong>⚠️ Heads up:</strong> This is an estimated forecast based on historical averages for early April in Missoula. Montana weather can be unpredictable — always check a live forecast closer to the trip. Snow is possible any time in April at elevation. Pack those layers!
+    </div>
+
+    <div class="card mt1">
+      <div class="card-header">
+        <div class="card-icon icon-blue">🏔️</div>
+        <div>
+          <div class="card-title">What to Expect — April in Missoula</div>
+        </div>
+      </div>
+      <ul style="padding-left:1.25rem;font-size:0.88rem;line-height:2;color:var(--charcoal);">
+        <li>Daytime highs in the <strong>50s–low 60s°F</strong> — comfortable with a light jacket</li>
+        <li>Nights drop to the <strong>mid-30s</strong> — bring a real coat for mornings and evenings</li>
+        <li><strong>Layering is key</strong> — temps can swing 20+ degrees in a day</li>
+        <li>The Clark Fork is running high and cold — beautiful to look at from a safe distance</li>
+        <li><strong>Spring wildflowers</strong> starting to pop on the hillsides</li>
+        <li>Mount Sentinel still likely has snow near the M</li>
+        <li>Rattlesnake Wilderness trails may be muddy from snowmelt</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ───── SHARE TAB ───── -->
+  <div class="tab-panel active" id="tab-share">
+    <div class="share-hero">
+      <h2 class="section-title">Share With Family</h2>
+      <p class="section-desc">Send this trip planner to everyone coming along — or to the Missoula crew so they can see the schedule</p>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon icon-purple">👨‍👩‍👧‍👦</div>
+        <div>
+          <div class="card-title">Who's On This Trip?</div>
+          <div class="card-sub">Our crew + the Missoula family</div>
+        </div>
+      </div>
+      <div class="family-who">
+        <div class="who-card">
+          <div class="who-avatar" style="background:#dbeeff;">🧔</div>
+          <div class="who-name">Josh</div>
+          <div class="who-role">Admin / Dad</div>
+        </div>
+        <div class="who-card">
+          <div class="who-avatar" style="background:#d4edda;">🧒</div>
+          <div class="who-name">Finley</div>
+          <div class="who-role">Traveler</div>
+        </div>
+        <div class="who-card">
+          <div class="who-avatar" style="background:#ede9f6;">🧒</div>
+          <div class="who-name">Gray</div>
+          <div class="who-role">Traveler</div>
+        </div>
+        <div class="who-card">
+          <div class="who-avatar" style="background:#fde8ec;">👴</div>
+          <div class="who-name">Mom &amp; Dad</div>
+          <div class="who-role">Missoula HQ</div>
+        </div>
+        <div class="who-card">
+          <div class="who-avatar" style="background:#fff3cd;">👩</div>
+          <div class="who-name">Lexie</div>
+          <div class="who-role">Missoula</div>
+        </div>
+        <div class="who-card">
+          <div class="who-avatar" style="background:#d4edda;">🧒</div>
+          <div class="who-name">Sloane</div>
+          <div class="who-role">Cousin</div>
+        </div>
+        <div class="who-card">
+          <div class="who-avatar" style="background:#dbeeff;">🧒</div>
+          <div class="who-name">Roman</div>
+          <div class="who-role">Cousin</div>
+        </div>
+        <div class="who-card">
+          <div class="who-avatar" style="background:#ede9f6;">🧒</div>
+          <div class="who-name">Orson</div>
+          <div class="who-role">Cousin</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon icon-green">📤</div>
+        <div>
+          <div class="card-title">How to Share</div>
+          <div class="card-sub">This is a self-contained HTML file</div>
+        </div>
+      </div>
+      <p style="font-size:0.88rem;color:var(--muted);margin-bottom:1.25rem;">
+        This trip planner lives entirely in one HTML file on your computer. To share it, just send the file — no internet connection or app required.
+      </p>
+      <div class="share-btns">
+        <button class="sbtn sbtn-green" onclick="exportPage()">⬇️ Download &amp; Share</button>
+        <button class="sbtn sbtn-blue" onclick="printPage()">🖨️ Print / Save as PDF</button>
+      </div>
+      <hr style="margin:1.25rem 0;">
+      <div style="font-size:0.85rem;color:var(--muted);">
+        <strong style="color:var(--charcoal);">📧 To email it:</strong> Attach the downloaded HTML file to an email. Recipients can open it in any web browser — no installation needed.<br><br>
+        <strong style="color:var(--charcoal);">📱 To text it:</strong> Upload the file to Google Drive or iCloud, then share the link.<br><br>
+        <strong style="color:var(--charcoal);">🔒 Admin note:</strong> The downloaded "family" version has the same view as this one, minus the admin editing mode (which stays on your copy).
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon icon-gold">📅</div>
+        <div>
+          <div class="card-title">Quick Trip Summary</div>
+          <div class="card-sub">Copy + paste into a text or email</div>
+        </div>
+      </div>
+      <div id="summary-text" style="background:var(--tan);border-radius:8px;padding:1rem;font-size:0.85rem;line-height:1.8;font-family:monospace;white-space:pre-wrap;">🏔️ MISSOULA SPRING 2026 — Family Trip
+
+✈️ FLIGHTS
+• Atlanta → Spokane: DL 0787 · Apr 4 · 9:48 AM EST → 11:37 AM PST
+• Spokane → Atlanta: Apr 9 · 12:35 PM PST → 7:59 PM EST
+
+🚗 RENTAL CARS (Avis)
+• Car #1: Pick up GEG Apr 4 @ 12:30 PM PST — drop off MSO Apr 4 @ 5:00 PM MST
+  Conf: 09935360US1
+• Car #2: Pick up MSO Apr 8 @ 5:00 PM MST — drop off GEG Apr 9 (before flight)
+  Conf: 09939742US1
+
+📅 KEY DATES
+• Sat Apr 4 — Arrival (fly in, drive Spokane → Missoula)
+• Sun Apr 5 — 🐣 EASTER SUNDAY! Brunch + egg hunt at Mom &amp; Dad's
+• Wed Apr 8 — Last full day; pick up return rental car @ 5 PM
+• Thu Apr 9 — Depart Missoula ~7:30 AM, fly home from Spokane
+
+TRAVELERS: Josh · Finley · Gray
+VISITING: Mom &amp; Dad · Sister · Sloane · Roman · Orson</div>
+      <button class="sbtn sbtn-blue" style="margin-top:0.75rem;" onclick="copySummary()">📋 Copy Summary</button>
+    </div>
+  </div>
+
+</main>
+
+<!-- ═══════════════════════════════════════
+     ADMIN BUTTON
+════════════════════════════════════════ -->
+<div class="admin-bar">
+  <button class="admin-toggle" id="admin-btn" onclick="toggleAdmin()">🔒 Admin</button>
+</div>
+
+<!-- ═══════════════════════════════════════
+     ADMIN PASSWORD MODAL
+════════════════════════════════════════ -->
+<div class="modal-bg" id="admin-modal">
+  <div class="modal-box">
+    <h3>🏔️ Admin Access</h3>
+    <p>Enter the admin password to unlock editing mode.</p>
+    <div class="modal-err" id="modal-err">Wrong password. Try again.</div>
+    <input type="password" id="admin-pw" placeholder="Password" onkeydown="if(event.key==='Enter')checkPw()">
+    <div class="modal-btns">
+      <button class="mbtn mbtn-secondary" onclick="closeModal()">Cancel</button>
+      <button class="mbtn mbtn-primary" onclick="checkPw()">Unlock</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     COPY TOAST
+════════════════════════════════════════ -->
+<div class="copy-toast" id="copy-toast">Copied to clipboard!</div>
+
+<!-- ═══════════════════════════════════════
+     JAVASCRIPT
+════════════════════════════════════════ -->
+<script>
+  // ─── CONSTANTS ───
+  const ADMIN_PW = 'missoula2026';
+  const LS_PREFIX = 'mso2026_';
+
+  // ─── TAB NAVIGATION ───
+  document.querySelectorAll('.nav-tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+    });
+  });
+
+  // ─── PACKING PERSON TABS ───
+  document.querySelectorAll('.ptab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.ptab').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.plist').forEach(l => l.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('plist-' + btn.dataset.person).classList.add('active');
+    });
+  });
+
+  // ─── ADMIN MODE ───
+  let adminOn = false;
+
+  function toggleAdmin() {
+    if (adminOn) {
+      adminOn = false;
+      document.body.classList.remove('admin-mode');
+      document.getElementById('admin-btn').classList.remove('on');
+      document.getElementById('admin-btn').textContent = '🔒 Admin';
+      // Lock all editable fields
+      document.querySelectorAll('[data-edit]').forEach(el => el.contentEditable = 'false');
+    } else {
+      document.getElementById('admin-modal').classList.add('open');
+      document.getElementById('admin-pw').value = '';
+      document.getElementById('modal-err').style.display = 'none';
+      setTimeout(() => document.getElementById('admin-pw').focus(), 100);
+    }
+  }
+
+  function checkPw() {
+    const pw = document.getElementById('admin-pw').value;
+    if (pw === ADMIN_PW) {
+      closeModal();
+      adminOn = true;
+      document.body.classList.add('admin-mode');
+      document.getElementById('admin-btn').classList.add('on');
+      document.getElementById('admin-btn').textContent = '✏️ Admin ON';
+      // Unlock all editable fields
+      document.querySelectorAll('[data-edit]').forEach(el => el.contentEditable = 'true');
+    } else {
+      document.getElementById('modal-err').style.display = 'block';
+      document.getElementById('admin-pw').select();
+    }
+  }
+
+  function closeModal() {
+    document.getElementById('admin-modal').classList.remove('open');
+  }
+
+  document.getElementById('admin-modal').addEventListener('click', e => {
+    if (e.target === document.getElementById('admin-modal')) closeModal();
+  });
+
+  // ─── PERSIST EDITABLE TEXT TO LOCALSTORAGE ───
+  document.querySelectorAll('[data-edit]').forEach(el => {
+    const key = LS_PREFIX + 'edit_' + el.dataset.edit;
+    // Restore saved value
+    const saved = localStorage.getItem(key);
+    if (saved !== null) el.textContent = saved;
+
+    // Save on input
+    el.addEventListener('input', () => {
+      localStorage.setItem(key, el.textContent);
+    });
+  });
+
+  // ─── PACKING CHECKBOXES ───
+  function updateProgress(person) {
+    const list = document.getElementById('plist-' + person);
+    if (!list) return;
+    const all = list.querySelectorAll('.pitem-cb');
+    const checked = list.querySelectorAll('.pitem-cb:checked');
+    const pct = all.length ? Math.round((checked.length / all.length) * 100) : 0;
+    document.getElementById('progress-bar-' + person).style.width = pct + '%';
+    document.getElementById('progress-text-' + person).textContent =
+      checked.length + ' of ' + all.length + ' packed (' + pct + '%)';
+  }
+
+  function initCheckbox(cb) {
+    const person = cb.dataset.person;
+    const label = cb.nextElementSibling;
+    const key = LS_PREFIX + 'cb_' + person + '_' + label.textContent.trim();
+
+    // Restore state
+    if (localStorage.getItem(key) === '1') {
+      cb.checked = true;
+      label.classList.add('done');
+    }
+
+    cb.addEventListener('change', () => {
+      label.classList.toggle('done', cb.checked);
+      localStorage.setItem(key, cb.checked ? '1' : '0');
+      updateProgress(person);
+    });
+  }
+
+  document.querySelectorAll('.pitem-cb').forEach(initCheckbox);
+  ['josh','finley','gray'].forEach(updateProgress);
+
+  // ─── ADD PACKING ITEMS ───
+  document.querySelectorAll('.add-item-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const person = btn.dataset.person;
+      const catId = btn.dataset.cat;
+      const catEl = document.getElementById(catId);
+      const text = prompt('Add item to ' + person + '\'s list:');
+      if (!text || !text.trim()) return;
+
+      const itemsWrap = catEl.querySelector('.pcat-items');
+      const div = document.createElement('div');
+      div.className = 'pitem';
+      div.innerHTML = `<input type="checkbox" class="pitem-cb" data-person="${person}">
+        <label class="pitem-label">${text.trim()}</label>
+        <button class="del-btn" title="Remove">✕</button>`;
+      itemsWrap.appendChild(div);
+
+      const newCb = div.querySelector('.pitem-cb');
+      initCheckbox(newCb);
+      updateProgress(person);
+
+      // Attach delete
+      div.querySelector('.del-btn').addEventListener('click', () => {
+        if (confirm('Remove "' + text.trim() + '"?')) {
+          div.remove();
+          updateProgress(person);
+        }
+      });
+
+      // Save custom items
+      saveCustomItems(person, catId);
+    });
+  });
+
+  // Delete buttons
+  document.querySelectorAll('.del-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.pitem');
+      const label = item.querySelector('.pitem-label').textContent;
+      if (confirm('Remove "' + label + '"?')) {
+        const person = item.querySelector('.pitem-cb').dataset.person;
+        item.remove();
+        updateProgress(person);
+      }
+    });
+  });
+
+  function saveCustomItems(person, catId) {
+    // Simple persistence for custom items (save labels)
+    const cat = document.getElementById(catId);
+    if (!cat) return;
+    const items = [];
+    cat.querySelectorAll('.pitem-label').forEach(l => items.push(l.textContent.trim()));
+    localStorage.setItem(LS_PREFIX + 'items_' + catId, JSON.stringify(items));
+  }
+
+  // ─── EXPORT / DOWNLOAD ───
+  function exportPage() {
+    const html = document.documentElement.outerHTML;
+    const blob = new Blob([html], {type: 'text/html'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'Missoula-Trip-2026.html';
+    a.click();
+    URL.revokeObjectURL(url);
+    showToast('Downloaded! Send the HTML file to family.');
+  }
+
+  function printPage() {
+    window.print();
+  }
+
+  // ─── COPY SUMMARY ───
+  function copySummary() {
+    const text = document.getElementById('summary-text').textContent;
+    navigator.clipboard.writeText(text).then(() => showToast('Summary copied!')).catch(() => {
+      // Fallback
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      showToast('Summary copied!');
+    });
+  }
+
+  // ─── TOAST ───
+  function showToast(msg) {
+    const t = document.getElementById('copy-toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2800);
+  }
+</script>
+
+
+</body></html>
