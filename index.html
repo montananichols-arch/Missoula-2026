@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="referrer" content="no-referrer">
+  <meta name="theme-color" content="#1c4528">
+  <link rel="manifest" href="manifest.json">
   <title>Missoula Spring 2026 — Family Trip</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -421,6 +423,124 @@
     hr { border: none; border-top: 1px solid var(--border); margin: 1.25rem 0; }
     .text-muted { color: var(--muted); font-size: 0.88rem; }
     .mt1 { margin-top: 1rem; }
+
+    /* ─── TIMEZONE BANNER ─── */
+    .tz-banner {
+      background: var(--deep-blue); color: white;
+      display: flex; justify-content: center; align-items: center;
+      gap: 1.5rem; padding: 0.45rem 1rem; font-size: 0.8rem; flex-wrap: wrap;
+    }
+    .tz-item { display: flex; align-items: center; gap: 0.4rem; }
+    .tz-city { opacity: 0.65; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.1em; }
+    .tz-time { font-weight: 700; font-variant-numeric: tabular-nums; }
+    .tz-arrow { opacity: 0.45; font-size: 0.72rem; }
+
+    /* ─── COUNTDOWN ─── */
+    .countdown-wrap {
+      display: flex; justify-content: center; gap: 0.75rem;
+      margin-bottom: 1.5rem; flex-wrap: wrap;
+    }
+    .countdown-unit {
+      background: rgba(255,255,255,0.15); border-radius: 10px;
+      padding: 0.55rem 0.9rem; text-align: center; min-width: 58px;
+      backdrop-filter: blur(4px);
+    }
+    .countdown-num {
+      font-size: 1.55rem; font-weight: 700; line-height: 1;
+      font-family: 'Playfair Display', serif;
+    }
+    .countdown-label {
+      font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.12em;
+      opacity: 0.72; margin-top: 0.2rem;
+    }
+    .countdown-gone {
+      font-size: 1rem; font-weight: 600; opacity: 0.9;
+      padding: 0.6rem 1.5rem;
+      background: rgba(90,169,106,0.3); border-radius: 10px;
+    }
+
+    /* ─── PHOTOS TAB ─── */
+    .photos-upload-zone {
+      border: 2px dashed var(--border); border-radius: 14px;
+      padding: 2rem 1rem; text-align: center; cursor: pointer;
+      transition: all 0.2s; margin-bottom: 1.5rem; background: white;
+    }
+    .photos-upload-zone:hover, .photos-upload-zone.dragover {
+      border-color: var(--forest); background: #f0f7f0;
+    }
+    .photos-upload-zone input[type=file] { display: none; }
+    .upload-icon { font-size: 2.5rem; margin-bottom: 0.4rem; }
+    .upload-text { font-size: 0.9rem; color: var(--muted); }
+    .upload-text strong { color: var(--forest); }
+    .upload-controls {
+      margin-top: 1rem; display: flex; gap: 0.5rem;
+      justify-content: center; align-items: center; flex-wrap: wrap;
+    }
+    .upload-name-input {
+      padding: 0.5rem 0.75rem; border: 1px solid var(--border);
+      border-radius: 8px; font-size: 0.88rem; outline: none;
+      font-family: 'Inter', sans-serif; width: 170px;
+    }
+    .upload-name-input:focus { border-color: var(--forest); }
+    .upload-btn {
+      padding: 0.5rem 1.1rem; background: var(--forest); color: white;
+      border: none; border-radius: 8px; font-size: 0.88rem;
+      cursor: pointer; font-family: 'Inter', sans-serif; font-weight: 600;
+    }
+    .upload-btn:hover { background: var(--mountain); }
+    .photos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1rem;
+    }
+    .photo-card {
+      border-radius: 12px; overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      background: white; position: relative;
+    }
+    .photo-card img {
+      width: 100%; height: 160px; object-fit: cover;
+      display: block; cursor: pointer; transition: opacity 0.15s;
+    }
+    .photo-card img:hover { opacity: 0.88; }
+    .photo-card-meta {
+      padding: 0.5rem 0.65rem 0.55rem;
+      display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;
+    }
+    .photo-card-info { min-width: 0; }
+    .photo-card-name { font-size: 0.8rem; font-weight: 600; truncate: true; }
+    .photo-card-date { font-size: 0.67rem; color: var(--muted); margin-top: 0.1rem; }
+    .photo-del-btn {
+      background: none; border: none; color: #e57373;
+      cursor: pointer; font-size: 0.95rem; padding: 0.2rem 0.35rem;
+      border-radius: 4px; transition: background 0.15s; flex-shrink: 0;
+    }
+    .photo-del-btn:hover { background: #fde8ec; }
+    .photos-empty {
+      text-align: center; padding: 3rem 1rem; color: var(--muted); font-size: 0.9rem;
+    }
+    .photos-empty .photos-empty-icon { font-size: 3rem; margin-bottom: 0.75rem; }
+    /* Lightbox */
+    .lightbox-bg {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.9); z-index: 2000;
+      align-items: center; justify-content: center;
+    }
+    .lightbox-bg.open { display: flex; }
+    .lightbox-inner { position: relative; max-width: 92vw; max-height: 92vh; }
+    .lightbox-img {
+      max-width: 92vw; max-height: 85vh;
+      border-radius: 8px; object-fit: contain; display: block;
+    }
+    .lightbox-caption {
+      color: white; text-align: center; font-size: 0.85rem;
+      margin-top: 0.6rem; opacity: 0.8;
+    }
+    .lightbox-close {
+      position: absolute; top: -2.5rem; right: 0;
+      background: none; border: none; color: white;
+      font-size: 1.8rem; cursor: pointer; line-height: 1; padding: 0.25rem;
+    }
   </style>
 </head>
 
@@ -440,6 +560,7 @@
       <span class="family-pill">🏔️ Big Sky Country</span>
       <span class="family-pill">🚗 Avis × 2</span>
     </div>
+    <div class="countdown-wrap" id="countdown-wrap"></div>
   </div>
 
   <!-- Mountain silhouette SVG -->
@@ -465,6 +586,23 @@
     </svg>
   </div>
 </header>
+
+<!-- ═══════════════════════════════════════
+     TIMEZONE BANNER
+════════════════════════════════════════ -->
+<div class="tz-banner">
+  <div class="tz-item">
+    <span class="tz-city">Atlanta</span>
+    <span class="tz-time" id="tz-atl">—</span>
+    <span style="font-size:0.68rem;opacity:0.55">ET</span>
+  </div>
+  <span class="tz-arrow">✈ 2 hrs behind →</span>
+  <div class="tz-item">
+    <span class="tz-city">Missoula</span>
+    <span class="tz-time" id="tz-mso">—</span>
+    <span style="font-size:0.68rem;opacity:0.55">MT</span>
+  </div>
+</div>
 
 <!-- ═══════════════════════════════════════
      PHOTO STRIP
@@ -530,6 +668,7 @@
     <button class="nav-tab" data-tab="packing">🎒 Packing</button>
     <button class="nav-tab" data-tab="weather">🌤️ Weather</button>
     <button class="nav-tab" data-tab="things">🎿 Things To Do</button>
+    <button class="nav-tab" data-tab="photos">📸 Photos</button>
     <button class="nav-tab" data-tab="share">📤 Share</button>
   </div>
 </nav>
@@ -1931,7 +2070,45 @@ VISITING: Mom & Dad · Sister · Sloane · Roman · Orson</div>
     </div>
   </div>
 
+  <!-- ───── PHOTOS TAB ───── -->
+  <div class="tab-panel" id="tab-photos">
+    <div class="section-header">
+      <h2 class="section-title">Trip Photos</h2>
+      <p class="section-desc">Upload and share photos with the whole family — anyone can add their own</p>
+    </div>
+
+    <div class="photos-upload-zone" id="photos-drop-zone" onclick="document.getElementById('photo-file-input').click()">
+      <input type="file" id="photo-file-input" accept="image/*" multiple>
+      <div class="upload-icon">📷</div>
+      <div class="upload-text"><strong>Click to upload photos</strong> or drag &amp; drop</div>
+      <div class="upload-text" style="font-size:0.8rem;margin-top:0.25rem;">JPG, PNG, HEIC · any size</div>
+      <div class="upload-controls" onclick="event.stopPropagation()">
+        <input type="text" class="upload-name-input" id="photo-uploader-name" placeholder="Your name (e.g. Josh)" maxlength="30">
+        <button class="upload-btn" onclick="document.getElementById('photo-file-input').click()">+ Add Photos</button>
+      </div>
+    </div>
+
+    <div id="photos-grid-wrap">
+      <div class="photos-empty" id="photos-empty">
+        <div class="photos-empty-icon">🏔️</div>
+        <div>No photos yet — be the first to upload!</div>
+      </div>
+      <div class="photos-grid" id="photos-grid"></div>
+    </div>
+  </div>
+
 </main>
+
+<!-- ═══════════════════════════════════════
+     LIGHTBOX
+════════════════════════════════════════ -->
+<div class="lightbox-bg" id="lightbox-bg" onclick="closeLightbox()">
+  <div class="lightbox-inner" onclick="event.stopPropagation()">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <img class="lightbox-img" id="lightbox-img" src="" alt="">
+    <div class="lightbox-caption" id="lightbox-caption"></div>
+  </div>
+</div>
 
 <!-- ═══════════════════════════════════════
      ADMIN BUTTON
@@ -2172,6 +2349,172 @@ VISITING: Mom & Dad · Sister · Sloane · Roman · Orson</div>
     t.textContent = msg;
     t.classList.add('show');
     setTimeout(() => t.classList.remove('show'), 2800);
+  }
+
+  // ─── COUNTDOWN WIDGET ───
+  const DEPART = new Date('2026-04-04T09:48:00-05:00'); // ATL departure EST
+  function renderCountdown() {
+    const wrap = document.getElementById('countdown-wrap');
+    if (!wrap) return;
+    const diff = DEPART - Date.now();
+    if (diff <= 0) {
+      wrap.innerHTML = '<div class="countdown-gone">🏔️ Trip is happening — enjoy Missoula!</div>';
+      return;
+    }
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    wrap.innerHTML = `
+      <div class="countdown-unit"><div class="countdown-num">${d}</div><div class="countdown-label">Days</div></div>
+      <div class="countdown-unit"><div class="countdown-num">${String(h).padStart(2,'0')}</div><div class="countdown-label">Hours</div></div>
+      <div class="countdown-unit"><div class="countdown-num">${String(m).padStart(2,'0')}</div><div class="countdown-label">Min</div></div>
+      <div class="countdown-unit"><div class="countdown-num">${String(s).padStart(2,'0')}</div><div class="countdown-label">Sec</div></div>`;
+  }
+  renderCountdown();
+  setInterval(renderCountdown, 1000);
+
+  // ─── TIMEZONE BANNER ───
+  function renderClocks() {
+    const now = Date.now();
+    const fmt = tz => new Intl.DateTimeFormat('en-US', {
+      hour: 'numeric', minute: '2-digit', hour12: true, timeZone: tz
+    }).format(now);
+    const atlEl = document.getElementById('tz-atl');
+    const msoEl = document.getElementById('tz-mso');
+    if (atlEl) atlEl.textContent = fmt('America/New_York');
+    if (msoEl) msoEl.textContent = fmt('America/Denver');
+  }
+  renderClocks();
+  setInterval(renderClocks, 10000);
+
+  // ─── URL HASH STATE (active tab) ───
+  function syncTabToHash() {
+    const active = document.querySelector('.nav-tab.active');
+    if (active) history.replaceState(null, '', '#' + active.dataset.tab);
+  }
+  document.querySelectorAll('.nav-tab').forEach(btn => {
+    btn.addEventListener('click', syncTabToHash);
+  });
+  // Restore tab from hash on load
+  (function restoreTabFromHash() {
+    const hash = location.hash.replace('#', '');
+    if (!hash) return;
+    const btn = document.querySelector(`.nav-tab[data-tab="${hash}"]`);
+    if (btn) {
+      document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      const panel = document.getElementById('tab-' + hash);
+      if (panel) panel.classList.add('active');
+    }
+  })();
+
+  // ─── PHOTOS ───
+  const PHOTOS_KEY = LS_PREFIX + 'photos';
+
+  function loadPhotos() {
+    try { return JSON.parse(localStorage.getItem(PHOTOS_KEY)) || []; }
+    catch(e) { return []; }
+  }
+
+  function savePhotos(photos) {
+    try { localStorage.setItem(PHOTOS_KEY, JSON.stringify(photos)); }
+    catch(e) { showToast('Storage full — try removing some photos.'); }
+  }
+
+  function renderPhotos() {
+    const photos = loadPhotos();
+    const grid = document.getElementById('photos-grid');
+    const empty = document.getElementById('photos-empty');
+    if (!grid) return;
+    grid.innerHTML = '';
+    empty.style.display = photos.length ? 'none' : 'block';
+    photos.forEach((p, i) => {
+      const card = document.createElement('div');
+      card.className = 'photo-card';
+      card.innerHTML = `
+        <img src="${p.src}" alt="Photo by ${p.name}" loading="lazy">
+        <div class="photo-card-meta">
+          <div class="photo-card-info">
+            <div class="photo-card-name">${p.name || 'Family'}</div>
+            <div class="photo-card-date">${p.date || ''}</div>
+          </div>
+          <button class="photo-del-btn" title="Remove photo" data-idx="${i}">✕</button>
+        </div>`;
+      card.querySelector('img').addEventListener('click', () => openLightbox(p.src, p.name, p.date));
+      card.querySelector('.photo-del-btn').addEventListener('click', () => deletePhoto(i));
+      grid.appendChild(card);
+    });
+  }
+
+  function deletePhoto(idx) {
+    const photos = loadPhotos();
+    photos.splice(idx, 1);
+    savePhotos(photos);
+    renderPhotos();
+  }
+
+  function addPhotos(files, name) {
+    const photos = loadPhotos();
+    let processed = 0;
+    const date = new Date().toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'});
+    Array.from(files).forEach(file => {
+      const reader = new FileReader();
+      reader.onload = e => {
+        photos.push({ src: e.target.result, name: name || 'Family', date });
+        processed++;
+        if (processed === files.length) {
+          savePhotos(photos);
+          renderPhotos();
+          showToast(`${files.length === 1 ? '1 photo' : files.length + ' photos'} added!`);
+        }
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  function openLightbox(src, name, date) {
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox-caption').textContent = [name, date].filter(Boolean).join(' · ');
+    document.getElementById('lightbox-bg').classList.add('open');
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox-bg').classList.remove('open');
+    document.getElementById('lightbox-img').src = '';
+  }
+
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+  // File input change
+  const photoInput = document.getElementById('photo-file-input');
+  if (photoInput) {
+    photoInput.addEventListener('change', () => {
+      const name = document.getElementById('photo-uploader-name').value.trim();
+      if (photoInput.files.length) addPhotos(photoInput.files, name);
+      photoInput.value = '';
+    });
+  }
+
+  // Drag & drop
+  const dropZone = document.getElementById('photos-drop-zone');
+  if (dropZone) {
+    dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('dragover'); });
+    dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+    dropZone.addEventListener('drop', e => {
+      e.preventDefault();
+      dropZone.classList.remove('dragover');
+      const name = document.getElementById('photo-uploader-name').value.trim();
+      if (e.dataTransfer.files.length) addPhotos(e.dataTransfer.files, name);
+    });
+  }
+
+  renderPhotos();
+
+  // ─── SERVICE WORKER (PWA) ───
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js').catch(() => {});
   }
 </script>
 </body>
