@@ -2455,22 +2455,43 @@ VISITING: Mom & Dad · Sister · Sloane · Roman · Orson</div>
     renderPhotos();
   }
 
+  function compressImage(file, callback) {
+    const MAX_PX = 1400;
+    const QUALITY = 0.78;
+    const reader = new FileReader();
+    reader.onload = e => {
+      const img = new Image();
+      img.onload = () => {
+        let { width: w, height: h } = img;
+        if (w > MAX_PX || h > MAX_PX) {
+          if (w > h) { h = Math.round(h * MAX_PX / w); w = MAX_PX; }
+          else       { w = Math.round(w * MAX_PX / h); h = MAX_PX; }
+        }
+        const canvas = document.createElement('canvas');
+        canvas.width = w; canvas.height = h;
+        canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+        callback(canvas.toDataURL('image/jpeg', QUALITY));
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
+
   function addPhotos(files, name) {
     const photos = loadPhotos();
     let processed = 0;
+    const total = files.length;
     const date = new Date().toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'});
     Array.from(files).forEach(file => {
-      const reader = new FileReader();
-      reader.onload = e => {
-        photos.push({ src: e.target.result, name: name || 'Family', date });
+      compressImage(file, src => {
+        photos.push({ src, name: name || 'Family', date });
         processed++;
-        if (processed === files.length) {
+        if (processed === total) {
           savePhotos(photos);
           renderPhotos();
-          showToast(`${files.length === 1 ? '1 photo' : files.length + ' photos'} added!`);
+          showToast(`${total === 1 ? '1 photo' : total + ' photos'} added!`);
         }
-      };
-      reader.readAsDataURL(file);
+      });
     });
   }
 
